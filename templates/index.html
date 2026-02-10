@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Data Set 2 Files | Department of Justice</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+/* HEADER */
+.header {
+    background-color: #002f6c;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    height: 48px;
+    margin-right: 20px;
+}
+
+.header-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* CONTENT */
+.container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* PAGE TITLE */
+.page-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* FILE LIST */
+.file-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    gap: 12px;
+}
+
+.file-number {
+    width: 30px;
+    font-weight: bold;
+}
+
+.file-item a {
+    color: #0047ab;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.file-item a:hover {
+    text-decoration: underline;
+}
+
+/* NOTICE */
+.notice {
+    margin-top: 40px;
+    font-size: 13px;
+    color: #444;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="{{ url_for('static', filename='doj-logo.png') }}" alt="DOJ Logo">
+    <div class="header-title">Department of Justice</div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="breadcrumb">
+        DOJ Disclosures › Epstein Documents
+    </div>
+
+    <div class="page-title">
+        Data Set 2 Files
+    </div>
+
+    {% set counter = 1 %}
+    {% for file in files %}
+    <div class="file-item">
+        <div class="file-number">{{ counter }}.</div>
+        <a href="/download/{{ file }}" target="_blank">{{ file }}</a>
+    </div>
+    {% set counter = counter + 1 %}
+    {% endfor %}
+
+    <div class="notice">
+        Notice: These records are released pursuant to public disclosure requirements.
+        The materials may contain sensitive information.
+    </div>
+
+</div>
+
+</body>
+</html>
